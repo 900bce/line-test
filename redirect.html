@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redirect</title>
+</head>
+
+<body>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+    window.addEventListener("load", async () => {
+      const urlSearchString = window.location.search;
+      const urlSearchParams = new URLSearchParams(urlSearchString);
+
+      if (!urlSearchParams.has('code')) {
+        return;
+      }
+
+      const code = urlSearchParams.get('code');
+      const userProfile = await axios.get('http://10.8.200.136:3000/get-line-game-guid', { params: { code } })
+        .then(response => response.data)
+        .catch(console.log);
+
+      if (!userProfile.guid || !userProfile.gameUrl) {
+        return;
+      }
+
+      const { guid, gameUrl } = userProfile;
+
+      window.location.href = `${gameUrl}?guid=${encodeURIComponent(guid)}`
+    });
+  </script>
+</body>
+
+</html>

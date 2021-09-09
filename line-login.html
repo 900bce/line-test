@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+</head>
+
+<body>
+  <script>
+    const clientId = '1656378097';
+    const redirectUri = 'http://10.8.200.136:5500/redirect.html';
+    const encodedRedirectUri = encodeURIComponent(redirectUri);
+    const timestamp = Date.now();
+
+    window.addEventListener('load', () => {
+      window.location.href =
+        `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${clientId}&redirect_uri=${encodedRedirectUri}&state=${timestamp}&scope=profile%20openid%20email`;
+    });
+  </script>
+</body>
+
+</html>
