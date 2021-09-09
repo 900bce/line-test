@@ -20,7 +20,7 @@
       }
 
       const code = urlSearchParams.get('code');
-      const userProfile = await axios.get('http://10.8.200.136:3000/get-line-game-guid', { params: { code } })
+      const userProfile = await axios.get('hhttp://lulouis.synology.me:6214/get-line-game-guid', { params: { code } })
         .then(response => response.data)
         .catch(console.log);
 
